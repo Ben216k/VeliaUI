@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "VeliaUI",
-            type: .dynamic,
+            type: .static,
             targets: ["VeliaUI"])
     ],
     dependencies: [

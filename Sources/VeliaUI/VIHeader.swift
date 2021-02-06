@@ -1,3 +1,10 @@
+//
+//  VIHeader.swift
+//  VeliaUI
+//
+//  Created by Ben Sova on 2/1/21.
+//
+
 @_exported import SwiftUI
 
 // MARK: Generation
@@ -31,7 +38,7 @@ public struct VIHeader: View {
                 }
             }
         }
-        .padding(.top, 40)
+//        .padding(.top, 40)
     }
     
     internal init(p: String, s: String, t: String? = nil, a: HorizontalAlignment) {
