@@ -24,9 +24,10 @@ public struct VISimpleCell: View {
                 Rectangle()
                     .foregroundColor(colorScheme == .dark ? Color.accentColor.opacity(0.7) : Color.accentColor)
                     .opacity(hovered == id ? 1 : 0)
+                    .frame(width: 380)
                     .cornerRadius(15)
-                    .frame(width: 375)
                     .offset(x: 5)
+                    .cornerRadius(15)
                 HStack(spacing: 15) {
                     ZStack() {
                         Rectangle()
