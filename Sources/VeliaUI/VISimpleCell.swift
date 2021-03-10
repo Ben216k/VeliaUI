@@ -14,23 +14,24 @@ public struct VISimpleCell: View {
     let filledSymbol: String
     let id: String
     @Binding var hovered: String?
+    @Environment(\.colorScheme) var colorScheme
     public var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             Rectangle()
-                .foregroundColor(Color.accentColor.opacity(hovered == id ? 0.1 : 0))
+                .foregroundColor(colorScheme == .dark ? Color.accentColor.opacity(0.7) : Color.accentColor)
+                .opacity(hovered == id ? 1 : 0)
                 .cornerRadius(15)
-                .shadow(radius: 2)
                 .frame(width: 375)
                 .offset(x: 5)
             HStack(spacing: 15) {
                 ZStack() {
                     Rectangle()
-                        .foregroundColor(Color.accentColor.opacity(0.2))
+                        .foregroundColor(hovered == id ? Color.white.opacity(0.2) : Color.accentColor.opacity(0.2))
                         .frame(width: 50, height: 50)
                         .cornerRadius(10)
                     if #available(OSX 11.0, *) {
                         Image(systemName: hovered == id ? filledSymbol : symbol)
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(hovered == id ? .white : .accentColor)
                             .font(Font.system(size: 30).weight(.light))
                             .padding(10)
                     } else {
@@ -40,11 +41,13 @@ public struct VISimpleCell: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(Font.system(size: 13.5).bold())
+                        .foregroundColor(hovered == id ? .white : .primary)
                     Text(description)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(hovered == id ? .white : .primary)
                         .font(Font.system(size: 11))
+                        .opacity(0.8)
                 }
-            }.padding(5)
+            }.padding(.leading, 5).padding(5)
         }.fixedSize().onHover { hovering in
             withAnimation {
                 hovered = hovering ? id : nil

@@ -7,7 +7,7 @@
 
 import VeliaUI
 
-struct ContentView: View {
+struct PostInstallMain: View {
     @State var hovered: String?
     var body: some View {
         VStack {
@@ -16,7 +16,11 @@ struct ContentView: View {
                     .alignment(.leading)
                     .padding(.leading, 30)
                 Spacer()
-                VISymbolShadowButton(s: "gearshape", id: "GEAR", h: $hovered, onClick: {})
+                VIButton(id: "SETTINGS", h: $hovered) {
+                    Image(systemName: "gearshape")
+                } onClick: {
+                    
+                }
                     .padding(.trailing, 30)
             }.padding(.top, 40)
             Spacer()

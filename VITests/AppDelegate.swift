@@ -19,12 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = PreInstallMain()
+        let contentView = PostInstallMain()
         
         // Create the window and set the content view.
         window = NSWindow.init(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .fullSizeContentView, .borderless, .resizable, .miniaturizable],
+            contentRect: NSRect(x: 0, y: 0, width: 584, height: 346),
+            styleMask: [.titled, .closable, .fullSizeContentView, .borderless, .miniaturizable],
             backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
         window.center()
