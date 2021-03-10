@@ -28,7 +28,6 @@ struct PostInstallMain: View {
                 VISimpleCell(t: "Update macOS", d: "Go from your current version of macOS to a newer one,\nwhere there's something new.", s: "arrow.clockwise.circle", id: "UPDATE", h: $hovered)
                 VISimpleCell(t: "Patch Kexts", d: "Kexts provide macOS with it's full functionality. So that\neverything works like it should.", s: "doc.circle", id: "KEXTS", h: $hovered)
                 VISimpleCell(t: "About This Mac", d: "The most unnecessary thing I added to this patcher. It\nshows some information about your Mac.", s: "info.circle", id: "ABOUT", h: $hovered)
-//                VISimpleCell(t: "Settings", d: "Some extra options that might help with your Patched Sur\ninstalltion. Just some extras.", i: "gearshape")
             }.padding(.horizontal, 40)
             Spacer()
         }
