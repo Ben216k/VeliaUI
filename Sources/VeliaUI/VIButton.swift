@@ -16,6 +16,7 @@ public struct VIButton<V: View>: View {
     let onClick: () -> ()
     @Environment(\.colorScheme) var colorScheme
     var useTextPadding: Bool
+    var color: Color
     
     public var body: some View {
         Button {
@@ -23,12 +24,12 @@ public struct VIButton<V: View>: View {
         } label: {
             ZStack {
                 Rectangle()
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(color)
                     .opacity(hovered == id ? 1 : 0.1)
                     .cornerRadius(15)
                 HStack {
                     view()
-                }.foregroundColor(hovered == id ? .white : .accentColor)
+                }.foregroundColor(hovered == id ? .white : color)
                 .padding(7)
                 .padding(.horizontal, useTextPadding ? 7 : 0)
             }
@@ -50,11 +51,16 @@ extension VIButton {
         _hovered = h
         self.onClick = onClick
         useTextPadding = false
+        color = .accentColor
     }
 }
 
 extension VIButton {
     public func inPad() -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true, color: color)
+    }
+    
+    public func btColor(_ c: Color) -> Self {
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: c)
     }
 }

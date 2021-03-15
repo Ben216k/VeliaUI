@@ -32,6 +32,5 @@ struct PostInstallMain: View {
             Spacer()
         }
         .edgesIgnoringSafeArea(.all)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

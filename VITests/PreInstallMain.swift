@@ -83,6 +83,7 @@ struct PreFirstView: View {
                     c = true
                 }
             }.inPad()
+            .btColor(.red)
         }
     }
 }
