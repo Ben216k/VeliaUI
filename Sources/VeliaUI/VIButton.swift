@@ -46,7 +46,7 @@ public struct VIButton<V: View>: View {
 // MARK: Initialization
 
 extension VIButton {
-    public init(id: String, h: Binding<String?>, @ViewBuilder view: @escaping () -> V, onClick: @escaping () -> ()) {
+    public init(id: String, h: Binding<String?>, @ViewBuilder view: @escaping () -> V, onClick: @escaping () -> () = {}) {
         self.view = view
         self.id = id
         _hovered = h
