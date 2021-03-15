@@ -43,7 +43,7 @@ struct PreInstallMain: View {
             Group {
                 switch progress {
                 case 0:
-                    ReleaseTrackView()
+                    PreFirstView(hovered: $hovered, p: $progress, c: $compressed)
                 default:
                     PreVolumeSelectView(hovered: $hovered)
                 }
@@ -68,16 +68,7 @@ struct PreFirstView: View {
             Text("This patcher is made to provide you with the simplest upgrade to macOS Big Sur on your unsupported Mac. It prepares everything to be perfect by the end of the installation, and makes sure that nothing will go wrong with your installtion. By the end, Patched Sur will try to make your Mac run just like a supported one.")
                 .multilineTextAlignment(.center)
                 .padding()
-            VIButton(id: "START", h: $hovered) {
-                Text("Get Started")
-                Image("ArrowRightCircle")
-            } onClick: {
-                withAnimation {
-                    p += 1
-                    c = true
-                }
-            }.inPad()
-            .btColor(.red)
+            VIError("Really long errdfsfor.")
         }
     }
 }
