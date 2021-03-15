@@ -12,16 +12,10 @@ struct PreInstallMain: View {
     @State var hovered: String?
     @Environment(\.colorScheme) var colorScheme
     @State var progress = 0
-    @State var compressed = false
+    @State var compressed = true
     @State var presentHIW = false
     var body: some View {
         VStack {
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .opacity(0.3)
-                Rectangle()
-                    .frame(width: 584 * (CGFloat(progress) / 10))
-            }.foregroundColor(.accentColor).frame(height: 27)
             HStack(spacing: 15) {
                 VIHeader(p: "Patched Sur", s: "v1.0.0 EX (84)", c: $compressed)
                     .alignment(.leading)
@@ -44,12 +38,12 @@ struct PreInstallMain: View {
                 }
             }
             .padding(.horizontal, 30)
-            .padding(.top, compressed ? 10 : 20)
+            .padding(.top, compressed ? 30 : 40)
             Spacer()
             Group {
                 switch progress {
                 case 0:
-                    PreFirstView(hovered: $hovered, p: $progress, c: $compressed)
+                    ReleaseTrackView()
                 default:
                     PreVolumeSelectView(hovered: $hovered)
                 }
@@ -176,3 +170,42 @@ It creates the usb installer used to install macOS Big Sur onto your Mac. To do 
 The installer is used to flash a copy of something similar to Recovery Mode onto the USB so you can boot into that. However, before that you need to patch it so that you can reinstall macOS like you normally would if something went wrong with your Mac (which in this case is Apple dropping support for it).
 Booting into the installer is relatively simple, but you have to do one thing first. Part of the usb patches is that it adds a second drive you need to boot into first. AND!!! I'll finish this later! On to v0.0.4.
 """
+
+struct ReleaseTrackView: View {
+    @State var hovered: String?
+    
+    var body: some View {
+        VStack {
+            Text("Set Update Track")
+                .font(.system(size: 15)).bold()
+            Text("Your update track defines what versions of macOS get. The Release track is the most stable, and probably what you're using already. Beta gives you access to new features of macOS early, but it's unstable at times.")
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+            HStack {
+                VIButton(id: "RELEASE", h: $hovered) {
+                    Image("TriUpCircleFill")
+                    Text("Release")
+                        .fontWeight(.heavy)
+                } onClick: {
+                }.inPad()
+                .btColor(.gray)
+                .useHoverAccent()
+                VIButton(id: "BETA", h: $hovered) {
+                    Image("AntCircle")
+                    Text("Beta")
+                        .fontWeight(.regular)
+                } onClick: {
+                }.inPad()
+                .btColor(.gray)
+                .useHoverAccent()
+            }.padding(.bottom)
+            VIButton(id: "CONTINUE", h: $hovered) {
+                Text("Continue")
+                Image("ForwardArrowCircle")
+            } onClick: {
+                withAnimation {
+                }
+            }.inPad()
+        }
+    }
+}
