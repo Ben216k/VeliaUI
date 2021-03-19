@@ -23,7 +23,7 @@ public struct VIError: View {
                         .frame(maxHeight: 400)
                     ScrollView(showsIndicators: false) {
                         HStack {
-                            Text("Error while fetching installers:\n\(e)")
+                            Text(e)
                                 .font(.system(size: 10, design: .monospaced))
                                 .foregroundColor(.red)
                                 .padding(10)
