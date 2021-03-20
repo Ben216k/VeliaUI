@@ -21,7 +21,7 @@ public struct VIHeader: View {
             VStack(alignment: alignment) {
                 HStack(alignment: .bottom) {
                     Text(primaryText)
-                        .font(compressed ? .system(size: 17.5) : .title)
+                        .font(compressed ? .system(size: 17.5) : .system(size: 21.5))
                         .bold()
                     if compressed {
                         if useSecondTitle {
@@ -53,7 +53,7 @@ public struct VIHeader: View {
                             .foregroundColor(.secondary)
                     } else {
                         Text(secondaryText)
-                            .font(.headline)
+                            .font(Font.system(size: 12).bold())
                             .foregroundColor(.secondary)
                     }
                 }
