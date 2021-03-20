@@ -12,7 +12,7 @@ struct PreInstallMain: View {
     @State var hovered: String?
     @Environment(\.colorScheme) var colorScheme
     @State var progress = 0
-    @State var compressed = true
+    @State var compressed = false
     @State var presentHIW = false
     var body: some View {
         VStack {
@@ -68,7 +68,11 @@ struct PreFirstView: View {
             Text("This patcher is made to provide you with the simplest upgrade to macOS Big Sur on your unsupported Mac. It prepares everything to be perfect by the end of the installation, and makes sure that nothing will go wrong with your installtion. By the end, Patched Sur will try to make your Mac run just like a supported one.")
                 .multilineTextAlignment(.center)
                 .padding()
-            VIError("Really long errdfsfor.")
+//            VIError("Really long errdfsfor.")
+            VIButton(id: "CONTINUE", h: $hovered) {
+                Text("Get Started")
+                Image("ForwardArrowCircle")
+            }.inPad()
         }
     }
 }

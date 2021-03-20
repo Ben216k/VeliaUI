@@ -21,7 +21,7 @@ public struct VIHeader: View {
             VStack(alignment: alignment) {
                 HStack(alignment: .bottom) {
                     Text(primaryText)
-                        .font(compressed ? .system(size: 17.5) : .title)
+                        .font(compressed ? .system(size: 17.5) : .system(size: 20))
                         .bold()
                     if compressed {
                         if useSecondTitle {
@@ -49,11 +49,11 @@ public struct VIHeader: View {
                 if !compressed {
                     if useSecondTitle {
                         Text(tritaryText ?? "VELIA UI ERROR x1")
-                            .font(.headline)
+                            .font(Font.system(size: 11.5).bold())
                             .foregroundColor(.secondary)
                     } else {
                         Text(secondaryText)
-                            .font(.headline)
+                            .font(Font.system(size: 11.5).bold())
                             .foregroundColor(.secondary)
                     }
                 }
