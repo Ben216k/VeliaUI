@@ -28,10 +28,16 @@ public struct VIButton<V: View>: View {
                     .foregroundColor(hovered == id && useAccent ? Color("Accent") : color)
                     .opacity(hovered == id ? 1 : 0.1)
                     .cornerRadius(15)
-                HStack {
-                    view()
-                }.foregroundColor(hovered == id ? .white : color)
-                .padding(7)
+                ZStack(alignment: .center) {
+                    HStack {
+                        view()
+                    }.foregroundColor(.white)
+                    .opacity(hovered == id ? 1 : 0)
+                    HStack {
+                        view()
+                    }.foregroundColor(color)
+                    .opacity(hovered == id ? 0 : 1)
+                }.padding(7)
                 .padding(.horizontal, useTextPadding ? 7 : 0)
             }
         }.buttonStyle(BorderlessButtonStyle())

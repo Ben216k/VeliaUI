@@ -22,35 +22,68 @@ public struct VISimpleCell: View {
         } label: {
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(colorScheme == .dark ? Color.accentColor.opacity(0.7) : Color.accentColor)
-                    .opacity(hovered == id ? 1 : 0)
-                    .frame(width: 380)
+                    .foregroundColor(colorScheme == .dark ? Color("Accent").opacity(0.7) : Color("Accent"))
+                    .opacity(hovered == id ? 1 : 0.001)
+                    .frame(width: 280)
                     .cornerRadius(15)
                     .offset(x: 5)
                     .cornerRadius(15)
-                HStack(spacing: 15) {
-                    ZStack() {
+                HStack(spacing: 10) {
+                    ZStack {
                         Rectangle()
-                            .foregroundColor(hovered == id ? Color.white.opacity(0.2) : Color.accentColor.opacity(0.2))
-                            .frame(width: 50, height: 50)
+                            .foregroundColor(hovered == id ? Color.white.opacity(0.2) : Color("Accent").opacity(0.2))
+                            .frame(width: 52.5, height: 52.5)
                             .cornerRadius(10)
-                        if #available(OSX 11.0, *) {
-                            Image(systemName: hovered == id ? filledSymbol : symbol)
-                                .foregroundColor(hovered == id ? .white : .accentColor)
-                                .font(Font.system(size: 30).weight(.light))
-                                .padding(10)
-                        } else {
-                            // Fallback on earlier versions
+                        ZStack(alignment: .center) {
+                            if #available(OSX 11.0, *) {
+                                    Image(systemName: filledSymbol)
+                                        .foregroundColor(hovered == id ? .white : Color("Accent"))
+                                        .font(Font.system(size: 31.25).weight(.light))
+                                        .frame(width: 31.25, height: 31.25)
+                                        .padding(10)
+                                        .opacity(hovered == id ? 1 : 0)
+                                    Image(systemName: symbol)
+                                        .foregroundColor(hovered == id ? .white : Color("Accent"))
+                                        .font(Font.system(size: 31.25).weight(.light))
+                                        .frame(width: 31.25, height: 31.25)
+                                        .padding(10)
+                                        .opacity(hovered == id ? 0 : 1)
+                            } else {
+                                // Fallback on earlier versions
+                            }
                         }
-                    }
-                    VStack(alignment: .leading) {
-                        Text(title)
-                            .font(Font.system(size: 13.5).bold())
-                            .foregroundColor(hovered == id ? .white : .primary)
-                        Text(description)
-                            .foregroundColor(hovered == id ? .white : .primary)
-                            .font(Font.system(size: 11))
-                            .opacity(0.8)
+                    }.padding(.leading, 5)
+                    ZStack {
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(title)
+                                .font(Font.system(size: 13.5).bold())
+                                .foregroundColor(.white)
+                                .opacity(hovered == id ? 1 : 0)
+                            Text(description)
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 11))
+                                .opacity(0.8)
+                                .lineLimit(3)
+                                .frame(maxWidth: 180, alignment: .leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .offset(y: 1)
+                                .opacity(hovered == id ? 1 : 0)
+                        }.frame(width: 180, alignment: .leading)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(title)
+                                .font(Font.system(size: 13.5).bold())
+                                .foregroundColor(.primary)
+                                .opacity(hovered == id ? 0 : 1)
+                            Text(description)
+                                .foregroundColor(.primary)
+                                .font(Font.system(size: 11))
+                                .opacity(0.8)
+                                .lineLimit(3)
+                                .frame(maxWidth: 180, alignment: .leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .offset(y: 1)
+                                .opacity(hovered == id ? 0 : 1)
+                        }.frame(width: 180, alignment: .leading)
                     }
                 }.padding(.leading, 5).padding(5)
             }.fixedSize().onHover { hovering in
