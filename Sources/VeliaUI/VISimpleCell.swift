@@ -16,6 +16,7 @@ public struct VISimpleCell: View {
     let action: () -> ()
     @Binding var hovered: String?
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.locale) var locale
     public var body: some View {
         Button {
             action()
@@ -56,32 +57,32 @@ public struct VISimpleCell: View {
                     ZStack {
                         VStack(alignment: .leading, spacing: 1) {
                             Text(title)
-                                .font(Font.system(size: 13.5).bold())
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 10.25 : 13.5).bold())
                                 .foregroundColor(.white)
                                 .opacity(hovered == id ? 1 : 0)
                                 .frame(width: 290, alignment: .leading)
                             Text(description)
                                 .foregroundColor(.white)
-                                .font(Font.system(size: 11))
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 9 : 11))
                                 .opacity(0.8)
-                                .lineLimit(3)
-                                .frame(maxWidth: 180, alignment: .leading)
+                                .lineLimit(4)
+                                .frame(maxWidth: 210, alignment: .leading)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .offset(y: 1)
                                 .opacity(hovered == id ? 1 : 0)
                         }.frame(width: 180, alignment: .leading)
                         VStack(alignment: .leading, spacing: 1) {
                             Text(title)
-                                .font(Font.system(size: 13.5).bold())
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 10.25 : 13.5).bold())
                                 .foregroundColor(.primary)
                                 .opacity(hovered == id ? 0 : 1)
                                 .frame(width: 290, alignment: .leading)
                             Text(description)
                                 .foregroundColor(.primary)
-                                .font(Font.system(size: 11))
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 9 : 11))
                                 .opacity(0.8)
-                                .lineLimit(3)
-                                .frame(maxWidth: 180, alignment: .leading)
+                                .lineLimit(4)
+                                .frame(maxWidth: 210, alignment: .leading)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .offset(y: 1)
                                 .opacity(hovered == id ? 0 : 1)
@@ -93,7 +94,11 @@ public struct VISimpleCell: View {
                     hovered = hovering ? id : nil
                 }
             }
+            .onAppear {
+                print(locale.identifier)
+            }
         }.buttonStyle(BorderlessButtonStyle())
+        .padding(.vertical, locale.identifier.hasPrefix("de") ? 2.5 : 0)
     }
     public init(t: String, d: String, s: String, f: String? = nil, id: String, h: Binding<String?>, a: @escaping () -> () = {}) {
         title = t

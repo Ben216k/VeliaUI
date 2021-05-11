@@ -33,7 +33,7 @@ struct PostInstallMain: View {
                 VStack(alignment: .leading, spacing: 7) {
                     VISimpleCell(t: "Create Installer", d: "Go from your current version of macOS to a newer one, where there's something new.", s: "externaldrive", id: "INSTALLER", h: $hovered)
 //                    VISimpleCell(t: "Install Recovery", d: "Kexts provide macOS with it's full functionality. So that everything works like it should.", s: "asterisk.circle", id: "RECOVERY", h: $hovered)
-                    VISimpleCell(t: "Instalar Modo Recuperación", d: "Kexts provide macOS with it's full functionality. So that everything works like it should.", s: "asterisk.circle", id: "RECOVERY", h: $hovered)
+                    VISimpleCell(t: "Wiederherstellungsmodus installieren", d: "Patche das Wiederherstellungslaufwerk (mit CMD-R beim Start aktivieren). Ist nicht immer nützlich.", s: "asterisk.circle", id: "RECOVERY", h: $hovered)
                     VISimpleCell(t: "About This Mac", d: "Disable animations, enable graphics switching, show logs and maybe more.", s: "info.circle", id: "ABOUT", h: $hovered)
                 }
             }.frame(width: 600, alignment: .center).padding(.horizontal, 40)
