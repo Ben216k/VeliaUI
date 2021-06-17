@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = PostInstallMain()
+        let contentView = PreInstallMain()
             .frame(width: 600, height: 325, alignment: .center)
         
         // Create the window and set the content view.

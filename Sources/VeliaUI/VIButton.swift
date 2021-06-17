@@ -18,6 +18,7 @@ public struct VIButton<V: View>: View {
     var useTextPadding: Bool
     var color: Color
     let useAccent: Bool
+    @State var useWeirdPadding = false
     
     public var body: some View {
         Button {
@@ -45,7 +46,12 @@ public struct VIButton<V: View>: View {
             withAnimation {
                 hovered = hovering ? id : nil
             }
-        }
+        }.frame(maxWidth: useWeirdPadding ? (!useTextPadding ? 29 : 200) : .infinity, maxHeight: useWeirdPadding ? 29 : .infinity)
+            .onAppear {
+                if #available(macOS 12.0, *) {
+                    useWeirdPadding = true
+                }
+            }
     }
 }
 
