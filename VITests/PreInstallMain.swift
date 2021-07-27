@@ -74,10 +74,10 @@ struct PreFirstView: View {
 //                Text("Get Started")
 //                Image("ForwardArrowCircle")
 //            }.inPad()
-            VITextField(text: $text, w: 300, s: Image(systemName: "person.fill")) {
+            VITextField(text: $text, w: 300, s: Image(systemName: "person.fill"), p: true) {
                 Text("Username")
             }
-            VITextField(text: $text, w: 300) {
+            VITextField(text: $text, w: 300, p: true) {
                 Text("Username")
             }
         }

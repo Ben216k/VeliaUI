@@ -11,6 +11,7 @@ public struct VITextField<V: View>: View {
     let view: () -> V
     let w: CGFloat?
     let symbol: Image?
+    let p: Bool
     @Binding var text: String
     public var body: some View {
         ZStack {
@@ -32,10 +33,17 @@ public struct VITextField<V: View>: View {
                             .opacity(text.isEmpty ? 1 : 0)
                         Spacer()
                     }
-                    TextField("", text: $text)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .foregroundColor(Color("Accent"))
-                        .multilineTextAlignment(.leading)
+                    if p {
+                        SecureField("", text: $text)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .foregroundColor(Color("Accent"))
+                            .multilineTextAlignment(.leading)
+                    } else {
+                        TextField("", text: $text)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .foregroundColor(Color("Accent"))
+                            .multilineTextAlignment(.leading)
+                    }
                 }
             }.padding(7).padding(.horizontal, 7)
         }.fixedSize(horizontal: false, vertical: true).frame(width: w)
@@ -43,11 +51,12 @@ public struct VITextField<V: View>: View {
 }
 
 extension VITextField {
-    public init(text: Binding<String>, w: CGFloat? = nil, s: Image? = nil, @ViewBuilder view: @escaping () -> V) {
+    public init(text: Binding<String>, w: CGFloat? = nil, s: Image? = nil, p: Bool = false, @ViewBuilder view: @escaping () -> V) {
         self.view = view
         self.w = w
         self._text = text
         self.symbol = s
+        self.p = p
     }
 }
 
