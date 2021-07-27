@@ -20,6 +20,7 @@ public struct VITextField<V: View>: View {
             HStack {
                 view()
                     .foregroundColor(Color("Accent"))
+                    .opacity(text.isEmpty ? 1 : 0)
                 Spacer()
             }.padding(7)
             .padding(.horizontal, 7)
