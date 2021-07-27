@@ -62,6 +62,7 @@ struct PreFirstView: View {
     @Binding var hovered: String?
     @Binding var p: Int
     @Binding var c: Bool
+    @State var text = ""
     var body: some View {
         VStack() {
             Text("Welcome to Patched Sur!").bold()
@@ -69,10 +70,16 @@ struct PreFirstView: View {
                 .multilineTextAlignment(.center)
                 .padding()
 //            VIError("Really long errdfsfor.")
-            VIButton(id: "CONTINUE", h: $hovered) {
-                Text("Get Started")
-                Image("ForwardArrowCircle")
-            }.inPad()
+//            VIButton(id: "CONTINUE", h: $hovered) {
+//                Text("Get Started")
+//                Image("ForwardArrowCircle")
+//            }.inPad()
+            VITextField(text: $text, w: 300, s: Image(systemName: "person.fill")) {
+                Text("Username")
+            }
+            VITextField(text: $text, w: 300) {
+                Text("Username")
+            }
         }
     }
 }

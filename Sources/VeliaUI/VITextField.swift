@@ -10,6 +10,7 @@ import SwiftUI
 public struct VITextField<V: View>: View {
     let view: () -> V
     let w: CGFloat?
+    let symbol: Image?
     @Binding var text: String
     public var body: some View {
         ZStack {
@@ -18,27 +19,35 @@ public struct VITextField<V: View>: View {
                 .opacity(0.1)
                 .cornerRadius(15)
             HStack {
-                view()
-                    .foregroundColor(Color("Accent"))
-                    .opacity(text.isEmpty ? 1 : 0)
-                Spacer()
-            }.padding(7)
-            .padding(.horizontal, 7)
-            TextField("", text: $text)
-                .textFieldStyle(PlainTextFieldStyle())
-                .foregroundColor(Color("Accent"))
-                .padding(.horizontal, 7)
-                .padding(7)
-                .multilineTextAlignment(.leading)
+                if let symbol = symbol {
+                    symbol
+                        .font(.system(size: 15, weight: .medium))
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(Color("Accent"))
+                }
+                ZStack {
+                    HStack {
+                        view()
+                            .foregroundColor(Color("Accent"))
+                            .opacity(text.isEmpty ? 1 : 0)
+                        Spacer()
+                    }
+                    TextField("", text: $text)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .foregroundColor(Color("Accent"))
+                        .multilineTextAlignment(.leading)
+                }
+            }.padding(7).padding(.horizontal, 7)
         }.fixedSize(horizontal: false, vertical: true).frame(width: w)
     }
 }
 
 extension VITextField {
-    public init(text: Binding<String>, w: CGFloat?, @ViewBuilder view: @escaping () -> V) {
+    public init(text: Binding<String>, w: CGFloat? = nil, s: Image? = nil, @ViewBuilder view: @escaping () -> V) {
         self.view = view
         self.w = w
         self._text = text
+        self.symbol = s
     }
 }
 
