@@ -57,13 +57,13 @@ public struct VISimpleCell: View {
                     ZStack {
                         VStack(alignment: .leading, spacing: 1) {
                             Text(title)
-                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 11.5 : 13.5).bold())
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") || locale.identifier.hasPrefix("el") ? 11.5 : 13.5).bold())
                                 .foregroundColor(.white)
                                 .opacity(hovered == id ? 1 : 0)
                                 .frame(width: 290, alignment: .leading)
                             Text(description)
                                 .foregroundColor(.white)
-                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 9.5 : 11))
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") || locale.identifier.hasPrefix("el") ? 9.5 : 11))
                                 .opacity(0.8)
                                 .lineLimit(4)
                                 .frame(maxWidth: 210, alignment: .leading)
@@ -73,13 +73,13 @@ public struct VISimpleCell: View {
                         }.frame(width: 180, alignment: .leading)
                         VStack(alignment: .leading, spacing: 1) {
                             Text(title)
-                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 11.5 : 13.5).bold())
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") || locale.identifier.hasPrefix("el") ? 11.5 : 13.5).bold())
                                 .foregroundColor(.primary)
                                 .opacity(hovered == id ? 0 : 1)
                                 .frame(width: 290, alignment: .leading)
                             Text(description)
                                 .foregroundColor(.primary)
-                                .font(Font.system(size: locale.identifier.hasPrefix("de") ? 9.5 : 11))
+                                .font(Font.system(size: locale.identifier.hasPrefix("de") || locale.identifier.hasPrefix("el") ? 9.5 : 11))
                                 .opacity(0.8)
                                 .lineLimit(4)
                                 .frame(maxWidth: 210, alignment: .leading)
@@ -98,7 +98,7 @@ public struct VISimpleCell: View {
                 print(locale.identifier)
             }
         }.buttonStyle(BorderlessButtonStyle())
-        .padding(.vertical, locale.identifier.hasPrefix("de") ? 2.5 : 0)
+        .padding(.vertical, locale.identifier.hasPrefix("de") || locale.identifier.hasPrefix("el") ? 2.5 : 0)
     }
     public init(t: String, d: String, s: String, f: String? = nil, id: String, h: Binding<String?>, a: @escaping () -> () = {}) {
         title = t
