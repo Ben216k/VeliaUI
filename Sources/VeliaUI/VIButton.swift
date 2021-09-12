@@ -39,7 +39,7 @@ public struct VIButton<V: View>: View {
                     .opacity(hovered == id ? 0 : 1)
                 }.padding(7)
                 .padding(.horizontal, useTextPadding ? 7 : 0)
-            }
+            }.fixedSize()
         }.buttonStyle(BorderlessButtonStyle())
         .onHover { hovering in
             withAnimation {
