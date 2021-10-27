@@ -19,6 +19,7 @@ public struct VIButton<V: View>: View {
     var color: Color
     let useAccent: Bool
     let fixedHorizontal: Bool
+    var txtColor: Color?
     
     public var body: some View {
         Button {
@@ -36,7 +37,7 @@ public struct VIButton<V: View>: View {
                     .opacity(hovered == id ? 1 : 0)
                     HStack {
                         view()
-                    }.foregroundColor(color)
+                    }.foregroundColor(txtColor ?? color)
                     .opacity(hovered == id ? 0 : 1)
                 }.padding(7)
                 .padding(.horizontal, useTextPadding ? 7 : 0)
@@ -62,23 +63,28 @@ extension VIButton {
         color = Color("Accent")
         useAccent = false
         fixedHorizontal = true
+        txtColor = nil
     }
 }
 
 extension VIButton {
     public func inPad() -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true, color: color, useAccent: useAccent, fixedHorizontal: fixedHorizontal)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true, color: color, useAccent: useAccent, fixedHorizontal: fixedHorizontal, txtColor: txtColor)
     }
     
     public func btColor(_ c: Color) -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: c, useAccent: useAccent, fixedHorizontal: fixedHorizontal)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: c, useAccent: useAccent, fixedHorizontal: fixedHorizontal, txtColor: nil)
     }
     
     public func useHoverAccent() -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: true, fixedHorizontal: fixedHorizontal)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: true, fixedHorizontal: fixedHorizontal, txtColor: nil)
     }
     
     public func fixedHorizontal(_ b: Bool) -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: useAccent, fixedHorizontal: b)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: useAccent, fixedHorizontal: b, txtColor: nil)
+    }
+    
+    public func txtColor(_ c: Color?) -> Self {
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: useAccent, fixedHorizontal: fixedHorizontal, txtColor: c)
     }
 }
