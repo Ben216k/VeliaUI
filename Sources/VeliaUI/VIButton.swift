@@ -18,6 +18,7 @@ public struct VIButton<V: View>: View {
     var useTextPadding: Bool
     var color: Color
     let useAccent: Bool
+    let fixedHorizontal: Bool
     
     public var body: some View {
         Button {
@@ -39,7 +40,7 @@ public struct VIButton<V: View>: View {
                     .opacity(hovered == id ? 0 : 1)
                 }.padding(7)
                 .padding(.horizontal, useTextPadding ? 7 : 0)
-            }.fixedSize()
+            }.fixedSize(horizontal: fixedHorizontal, vertical: true)
         }.buttonStyle(BorderlessButtonStyle())
         .onHover { hovering in
             withAnimation {
@@ -60,19 +61,24 @@ extension VIButton {
         useTextPadding = false
         color = Color("Accent")
         useAccent = false
+        fixedHorizontal = true
     }
 }
 
 extension VIButton {
     public func inPad() -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true, color: color, useAccent: useAccent)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: true, color: color, useAccent: useAccent, fixedHorizontal: fixedHorizontal)
     }
     
     public func btColor(_ c: Color) -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: c, useAccent: useAccent)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: c, useAccent: useAccent, fixedHorizontal: fixedHorizontal)
     }
     
     public func useHoverAccent() -> Self {
-        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: true)
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: true, fixedHorizontal: fixedHorizontal)
+    }
+    
+    public func fixedHorizontal(_ b: Bool) -> Self {
+        .init(view: view, id: id, hovered: $hovered, onClick: onClick, useTextPadding: useTextPadding, color: color, useAccent: useAccent, fixedHorizontal: b)
     }
 }
